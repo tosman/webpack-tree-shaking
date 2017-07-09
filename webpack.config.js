@@ -13,12 +13,8 @@ module.exports = function() {
         debug: false
       }),
       new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          unused: true // Treeshake {{shaking}}
-        },
-        output: {
-          comments: false
-        }
+           minimize: true,
+           mangle: false
       })
     );
   }
@@ -28,6 +24,7 @@ module.exports = function() {
       filename: "bundle.js",
       path: __dirname + "/.dist"
     },
+    devtool: isProd ? 'false': 'eval-source-map',
     module: {
       rules: [
         {
